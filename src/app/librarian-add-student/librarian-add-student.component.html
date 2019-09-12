@@ -1,0 +1,50 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{user_name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+
+    <a routerLink="/librarian-add-book" class="nav-item nav-link">Add Book</a>
+    <a routerLink="/librarian-add-student" class="nav-item nav-link active">Add Student</a>
+    <a routerLink="/librarian-issue-book" class="nav-item nav-link">Issue Books to students</a>
+    <a routerLink="/librarian-view-record" class="nav-item nav-link">View Records</a>
+
+</nav>
+Add Student
+<form [formGroup]="myForm">
+    <div class="container">
+    <div class="form-group">
+  Student Id:
+  <input type="text" class="form-control" formControlName="id" placeholder="Student id"  name="id" id="id">
+
+
+  <div *ngIf="myForm.get('id').hasError('required')">
+   please provide id for the student!
+  </div>
+
+    </div>
+
+    <div class="form-group">
+  Student Name :
+  <input type="text" class="form-control" formControlName="name" placeholder="Student name" name="name" id="name">
+
+  <div *ngIf="myForm.get('name').hasError('required')">
+     please provide  the student name {{ myForm.get('name').value }}
+  </div>
+</div>
+<div class="form-group">
+  Password for the student {{ myForm.get('name').value }}
+  <input formControlName="password" class="form-control" type="password" placeholder="Password"  name="password" id="password">
+
+  <div *ngIf="myForm.get('password').hasError('required')">
+    please provide a Password for the student {{ myForm.get('name').value }}
+  </div>
+
+</div>
+    <button type="button" [disabled]="myForm.invalid" class="btn btn-primary" (click)="submit(name,user_name,password)">
+    Submit
+    </button>
+    </div>
+</form>
+<p [hidden]='!studentAddedSuccessfully' class="alert alert-success">The student has been added successfully!
+</p>

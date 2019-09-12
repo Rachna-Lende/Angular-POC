@@ -1,0 +1,42 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+    <a routerLink="/student-book-search" class="nav-item nav-link">Search a Book</a>
+    <a routerLink="/student-issue-book" class="nav-item nav-link">Issue a Book</a>
+    <a routerLink="/student-issue-status" class="nav-item nav-link">Check status of request to issue book</a>
+    <a routerLink="/student-return-book" class="nav-item nav-link active">Return book</a>
+  </nav>
+
+  <table border="5px">
+    
+        <tr>
+        <td>Student Id</td>
+        <td>Student name</td>
+        <td>Book name</td>
+        <td>Issue date</td>
+        <td>Return date</td>
+        <td>Return Book</td>
+        </tr>
+
+        <tr>
+
+
+        <td *ngIf="transaction.isIssued">{{transaction.id}}</td>
+        <td *ngIf="transaction.isIssued">{{transaction.name}}</td>
+        <td *ngIf="transaction.isIssued">{{transaction.book}}</td>
+        <td *ngIf="transaction.isIssued">{{transaction.issueDate}}</td>
+        <td *ngIf="transaction.isIssued">{{transaction.returnDate}}</td>
+        <td *ngIf="transaction.isIssued">
+                <button type="button" (click)="submit(transaction)" class="btn btn-primary">Return book</button>
+        </td>
+
+
+        </tr>
+
+
+</table>
+<p [hidden]='!bookReturnedSuccessfully' class="alert alert-success" >Book returned successfully.
+</p>
+

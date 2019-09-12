@@ -1,0 +1,42 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{user_name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+
+    <a routerLink="/librarian-add-book" class="nav-item nav-link">Add Book</a>
+    <a routerLink="/librarian-add-student" class="nav-item nav-link">Add Student</a>
+    <a routerLink="/librarian-issue-book" class="nav-item nav-link ">Issue Books to students</a>
+    <a routerLink="/librarian-view-record" class="nav-item nav-link active">View Records</a>
+
+</nav>
+
+View Issue/Return Record to the students
+
+<table border="5px">
+  
+    <tr>
+    <td>Student Id</td>
+    <td>Student name</td>
+    <td>Book name</td>
+    <td>Issue date</td>
+    <td>Return date</td>
+    
+    </tr>
+   
+<tr *ngFor="let transaction of transactions">
+
+  
+      
+<td *ngIf="transaction.isIssued">{{transaction.id}}</td>
+<td *ngIf="transaction.isIssued">{{transaction.name}}</td>
+<td *ngIf="transaction.isIssued">{{transaction.book}}</td>
+<td *ngIf="transaction.isIssued">{{transaction.issueDate}}</td>
+<td *ngIf="transaction.isIssued">{{transaction.returnDate}}</td>
+
+  </tr>
+
+
+
+
+</table>

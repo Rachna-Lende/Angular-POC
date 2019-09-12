@@ -1,0 +1,17 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+    <a routerLink="/student-book-search" class="nav-item nav-link">Search a Book</a>
+    <a routerLink="/student-issue-book" class="nav-item nav-link">Issue a Book</a>
+    <a routerLink="/student-issue-status" class="nav-item nav-link active">Check status of request to issue book</a>
+    <a routerLink="/student-return-book" class="nav-item nav-link">Return book</a>
+  </nav>
+  Check status of issued book.
+<p [hidden]="!bookIssued" class="alert alert-success">
+   You can issue the book {{transaction.book}} between {{transaction.issueDate}} to {{transaction.returnDate}}
+  </p>
+  <p [hidden]="!bookNotIssued" class="alert alert-danger" >
+      You cannot issue the book {{transaction.book}} between {{transaction.issueDate}} to {{transaction.returnDate}}
+     </p>

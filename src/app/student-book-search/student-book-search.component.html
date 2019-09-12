@@ -1,0 +1,55 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+    <a routerLink="/student-book-search" class="nav-item nav-link active">Search a Book</a>
+    <a routerLink="/student-issue-book" class="nav-item nav-link">Issue a Book</a>
+    <a routerLink="/student-issue-status" class="nav-item nav-link">Check status of request to issue book</a>
+    <a routerLink="/student-return-book" class="nav-item nav-link">Return book</a>
+  </nav>
+  Search a Book
+<form>
+    <div class="container">
+ 
+         
+     <div class="form-group">
+         Book name:  <input type="text"  class="form-control" placeholder="Book name" [(ngModel)]="id" name="id" id="id" required minlength="3" #isvalidb="ngModel"><br><br>
+          
+         <div *ngIf="isvalidb.errors?.required"> 
+             Book required. 
+         </div>
+         <div *ngIf="isvalidb.errors?.minlength"> 
+             Enter the book name
+         </div> 
+     </div>
+    
+          <button type="button" (click)="submit(id)"  class="btn btn-primary">Submit</button> 
+    </div>
+        </form>
+
+        <div [hidden]="!showAllBooks">
+            <div *ngFor="let book of books">
+              Book name:{{ book.id }}<br>
+              Book author:{{book.author}}<br>
+              <img [src]="book.book_cover" height="200">
+            </div>
+        </div>
+
+
+        <div [hidden]="!bookAvailable">
+                 {{id}}
+                 Book Information:<br>
+                 Author:{{book1.author}}
+     
+                <div>
+                <img [src]="book1.book_cover" height="200"> <br/>
+                </div>
+        </div>
+  <p [hidden]="!bookNotAvailable" class="alert alert-danger">
+    The book is not available in libraray.
+  </p>
+  <p [hidden]="!noCopiesAvaiable" class="alert alert-danger">
+    The library has this book but currently all the books are issued.
+  </p>
+ 

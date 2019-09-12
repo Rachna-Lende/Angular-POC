@@ -1,0 +1,61 @@
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+<p>
+ Welcome {{user_name}}
+</p>
+<nav class="nav nav-pills nav-fill">
+
+    <a routerLink="/librarian-add-book" class="nav-item nav-link active">Add Book</a>
+    <a routerLink="/librarian-add-student" class="nav-item nav-link">Add Student</a>
+    <a routerLink="/librarian-issue-book" class="nav-item nav-link">Issue Books to students</a>
+    <a routerLink="/librarian-view-record" class="nav-item nav-link">View Records</a>
+
+</nav>
+Add Book<br><br>
+<form #addbook = "ngForm" (ngSubmit) = "submit(addbook.value)">
+   <div class="container">
+
+        
+    <div class="form-group">
+        Book name:  <input type="text" class="form-control" placeholder="Book name" [(ngModel)]="id" name="id" id="id" required minlength="3" #isvalidb="ngModel">
+         
+        <div *ngIf="isvalidb.errors?.required"> 
+            Book required. 
+        </div>
+        <div *ngIf="isvalidb.errors?.minlength"> 
+            Enter the book name
+        </div> 
+    </div>
+    <div class="form-group"> 
+       Author:  <input type="text" class="form-control" placeholder="Author" [(ngModel)]="author" name="author" id="author" required minlength="3" #isvalid="ngModel">
+         
+        <div *ngIf="isvalid.errors?.required"> 
+            Author required. 
+        </div>
+        <div *ngIf="isvalid.errors?.minlength"> 
+            Enter the author name
+        </div> 
+    </div>
+    <div class="form-group"> 
+            Copies:  <input type="text" class="form-control" placeholder="Number of copies" [(ngModel)]="copies" name="copies" id="copies" required minlength="3" #isvalid="ngModel">
+              
+             <div *ngIf="isvalid.errors?.required"> 
+                 Copies required 
+             </div>
+             <div *ngIf="isvalid.errors?.minlength"> 
+                 Enter the number of copies
+             </div> 
+         </div>
+
+     <div class="form-group"> 
+      Book Cover:<input type="file"  required (change)="onFileChanged($event)" [(ngModel)]="book_cover" name="book_cover" id="book_cover" #isvalidf="ngModel">
+     
+     </div>
+     <img [src]="imageShow" height="200"> <br/>
+   
+
+
+   <input type = "submit" value = "submit" class="btn btn-primary"> 
+</div>
+</form>
+<p [hidden]='!bookAddedSuccessfully'  class="alert alert-success">The book has been added successfully.
+</p>
